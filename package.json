@@ -1,0 +1,17 @@
+{
+  "name": "nodejsexpress2024",
+  "version": "1.0.0",
+  "description": "Express tutorial",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "dev-server": "nodemon server"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "date-fns": "^3.3.1",
+    "express": "^4.18.2",
+    "uuid": "^9.0.1"
+  }
+}
