@@ -1,0 +1,5 @@
+
+12/02/2024	19:14:44	13cb9357-92dc-4541-a2ff-1bf597e7de77	GET	undefined	/	Error: Not allowed by CORS
+12/02/2024	19:14:46	d6804815-b72f-4012-99f2-8473970e6fee	GET	undefined	/	Error: Not allowed by CORS
+12/02/2024	19:14:51	4a4d3717-c38a-4bd2-aac3-a4e7e5d98ea5	GET	undefined	/new-page.html	Error: Not allowed by CORS
+12/02/2024	19:28:50	d7e6a4b7-a53a-49a8-8b28-1808647db6d8	GET	undefined	/mmm	TypeError: req.accepots is not a function
