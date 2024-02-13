@@ -1,11 +1,9 @@
 const express = require("express");
 const app = express(); // Create the server, express app
-
 const path = require("path");
 const cors = require("cors");
 const { logger } = require("./middleware/logEvents");
 const PORT = process.env.PORT || 3100;
-
 const errorHandler = require("./middleware/errorHandler");
 
 // Custom middleware logger
@@ -29,19 +27,6 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-/*app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PUT, DELETE, PATCH, OPTIONS"
-  );
-  next();
-});*/
-
 // built-in middleware to handle urlencoded data
 // in other words, "form data":
 // 'content-type': application/x-www-form-urlencoded'
@@ -51,56 +36,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Built-in middleware for serving static files, img, css, txt
-app.use(express.static(path.join(__dirname, "/public")));
+// For each subdirectory(the default is slash /)
+app.use("/", express.static(path.join(__dirname, "/public")));
+app.use("/subdir", express.static(path.join(__dirname, "/public")));
 
-// ^ = begin, $ = end, (.html)? = made it optional
-app.get("^/$|index(.html)?", (req, res) => {
-  // res.send("Hello World !"); // Send Text
-  // res.sendFile("./views/index.html", { root: __dirname }); // send File, in this case the HTML
-  res.sendFile(path.join(__dirname, "views", "index.html"));
-});
+//Handle Routes
+app.use("/", require("./routes/root"));
+app.use("/subdir", require("./routes/subdir"));
+app.use("/employees", require("./routes/api/employees"));
 
-////////////
-app.get("/new-page(.html)?", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "new-page.html"));
-});
-
-////////////
-app.get("/old-page(.html)?", (req, res) => {
-  res.redirect(301, "/new-page.html");
-});
-
-///////////////
-app.get(
-  "/hello(.html)?",
-  (req, res, next) => {
-    console.log("attempted to load...");
-    next();
-  },
-  (req, res) => {
-    res.send("Hello Everyone !");
-  }
-);
-
-////////////////
-const one = (req, res, next) => {
-  console.log("one");
-  next();
-};
-
-const two = (req, res, next) => {
-  console.log("two");
-  next();
-};
-
-const three = (req, res) => {
-  console.log("three");
-  res.send("Finished");
-};
-
-app.get("/chain(.html)?", [one, two, three]);
-//////////////////////
-
+// Handle not found pages 404
 // app.all:  Apply for all http methods
 app.all("*", (req, res) => {
   res.status(404);
@@ -114,11 +59,11 @@ app.all("*", (req, res) => {
     res.type("txt").send("404 not found");
   }
 });
-//////////////////////
 
+// Handle Errors
 app.use(errorHandler);
 
-/////////////
+// Listening to the PORT
 app.listen(PORT, () => {
   console.log(`Listening on port : ${PORT}`);
 });
