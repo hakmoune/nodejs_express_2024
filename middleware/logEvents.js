@@ -4,7 +4,7 @@ const path = require("path");
 const { format } = require("date-fns");
 const { v4: uuid } = require("uuid");
 
-// Logger Custom Middleware
+// Logger Custom Middleware // req.headers.origin = website sending from
 const logger = (req, res, next) => {
   const message = `${req.method}\t${req.headers.origin}\t${req.url}`;
   logEvents(message, "reqLog.txt");

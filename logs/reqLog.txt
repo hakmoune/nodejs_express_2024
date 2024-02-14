@@ -25,3 +25,17 @@
 13/02/2024	18:35:35	c2d723c0-b87e-4406-a36c-5905792f108e	GET	undefined	/employees
 13/02/2024	18:40:49	038cc255-9b78-4cfd-aebf-a81f84d9ebd4	GET	undefined	/employees
 13/02/2024	18:41:57	1e54edf0-b1b2-4c94-8682-71ba98ea25ac	GET	undefined	/employees
+14/02/2024	00:33:09	639d21bd-9bef-4d97-9286-bd885b8d4531	GET	undefined	/
+14/02/2024	00:33:49	769af73f-4b4f-4141-b23a-724c00388e3e	GET	undefined	/employees
+14/02/2024	00:46:38	d96f5213-ce9b-4a7b-b228-f14e4dd96d54	GET	undefined	/employees
+14/02/2024	00:46:39	017651e7-5e0a-4add-aaea-cab600f37a9f	GET	undefined	/employees
+14/02/2024	01:29:10	ddb5b0b4-dd3c-4f5a-b573-34197500b08a	GET	undefined	/employees
+14/02/2024	10:56:15	9dad5922-7bd3-4bbe-ba6b-9f11e814610d	GET	undefined	/employees
+14/02/2024	10:56:16	2d61f42a-f6bd-438f-8ce7-b7f09c9ee42d	GET	undefined	/favicon.ico
+14/02/2024	11:02:56	bf662fea-036e-4612-8aca-5e3f257d3e57	GET	undefined	/employees
+14/02/2024	11:06:23	1cedc574-e8ac-49c9-a783-3494b00408d1	GET	undefined	/employees
+14/02/2024	11:06:39	52459f18-9c14-4af8-b3ce-e08f13fe0780	GET	undefined	/employees
+14/02/2024	11:06:41	d69b16ef-24f2-4034-90d5-4c5fa6d52741	GET	undefined	/employees
+14/02/2024	11:22:57	cf30af15-fbe7-4899-b090-9f351f8aedfd	GET	undefined	/employees
+14/02/2024	12:08:43	e4411cdd-2e58-46ce-9601-1d5a8cb31abd	GET	undefined	/employees
+14/02/2024	15:51:38	cadf76a7-052f-4f6c-ab60-da37420bb470	GET	undefined	/employees

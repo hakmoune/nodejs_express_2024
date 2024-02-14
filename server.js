@@ -2,41 +2,24 @@ const express = require("express");
 const app = express(); // Create the server, express app
 const path = require("path");
 const cors = require("cors");
+const corsOptions = require("./config/corsOptions");
 const { logger } = require("./middleware/logEvents");
 const PORT = process.env.PORT || 3100;
 const errorHandler = require("./middleware/errorHandler");
 
 // Custom middleware logger
-// req.headers.origin = website sending from
 app.use(logger);
 
 // Cross Origin Resource Sharing
-const whitelist = ["https://www.yoursite.com", "http://localhost:3100"];
-const corsOptions = {
-  origin: (origin, callback) => {
-    // !origin === the same site, undefined cross site
-    if (whitelist.indexOf(origin) !== -1 || !origin) {
-      // The first argument (null) indicates that there is no error.
-      // The second argument (true) indicates that the request is allowed.
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  optionsSuccessStatus: 200
-};
 app.use(cors(corsOptions));
 
-// built-in middleware to handle urlencoded data
-// in other words, "form data":
-// 'content-type': application/x-www-form-urlencoded'
+// built-in middleware to handle urlencoded data // in other words, "form data": // 'content-type': application/x-www-form-urlencoded'
 app.use(express.urlencoded({ extended: false }));
 
 // built-in middleware for json
 app.use(express.json());
 
-// Built-in middleware for serving static files, img, css, txt
-// For each subdirectory(the default is slash /)
+// Built-in middleware for serving static files, img, css, txt // For each subdirectory(the default is slash /)
 app.use("/", express.static(path.join(__dirname, "/public")));
 app.use("/subdir", express.static(path.join(__dirname, "/public")));
 
@@ -45,8 +28,7 @@ app.use("/", require("./routes/root"));
 app.use("/subdir", require("./routes/subdir"));
 app.use("/employees", require("./routes/api/employees"));
 
-// Handle not found pages 404
-// app.all:  Apply for all http methods
+// Handle not found pages 404 // app.all:  Apply for all http methods
 app.all("*", (req, res) => {
   res.status(404);
   if (req.accepts("html")) {
@@ -60,7 +42,7 @@ app.all("*", (req, res) => {
   }
 });
 
-// Handle Errors
+// Custom middleware to Handle Errors
 app.use(errorHandler);
 
 // Listening to the PORT
