@@ -1,6 +1,6 @@
 const data = {
   employees: require("../model/employees.json"),
-  setEmployees: data => {
+  setEmployees: function(data) {
     this.employees = data;
   }
 };
