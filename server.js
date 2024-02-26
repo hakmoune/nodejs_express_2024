@@ -4,11 +4,18 @@ const path = require("path");
 const cors = require("cors");
 const corsOptions = require("./config/corsOptions");
 const { logger } = require("./middleware/logEvents");
+const credentials = require("./middleware/credentials");
 const PORT = process.env.PORT || 3100;
 const errorHandler = require("./middleware/errorHandler");
+const cookieParser = require("cookie-parser");
 
 // Custom middleware logger
 app.use(logger);
+
+// Handle options Credentials check - before Cross-Origin Resource Sharing (CORS)!
+// to control whether the browser should include credentials. when making a cross-origin request.
+// and fetch cookies credentials requirement
+app.use(credentials);
 
 // Cross Origin Resource Sharing
 app.use(cors(corsOptions));
@@ -19,6 +26,9 @@ app.use(express.urlencoded({ extended: false }));
 // built-in middleware for json
 app.use(express.json());
 
+// Middleware extracts cookie data from HTTP requests
+app.use(cookieParser());
+
 // Built-in middleware for serving static files, img, css, txt // For each subdirectory(the default is slash /)
 app.use("/", express.static(path.join(__dirname, "/public")));
 app.use("/subdir", express.static(path.join(__dirname, "/public")));
@@ -27,8 +37,11 @@ app.use("/subdir", express.static(path.join(__dirname, "/public")));
 app.use("/", require("./routes/root"));
 app.use("/register", require("./routes/register"));
 app.use("/auth", require("./routes/auth"));
-app.use("/subdir", require("./routes/subdir"));
+app.use("/refresh", require("./routes/refresh"));
+app.use("/logout", require("./routes/logout"));
+
 app.use("/employees", require("./routes/api/employees"));
+app.use("/subdir", require("./routes/subdir"));
 
 // Handle not found pages 404 // app.all:  Apply for all http methods
 app.all("*", (req, res) => {

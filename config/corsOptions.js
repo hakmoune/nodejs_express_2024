@@ -1,9 +1,9 @@
-const whitelist = ["https://www.yoursite.com", "http://localhost:3100"];
+const allowedOrigins = require("./allowedOrigins");
 
 const corsOptions = {
   origin: (origin, callback) => {
-    // !origin === the same site, undefined cross site
-    if (whitelist.indexOf(origin) !== -1 || !origin) {
+    // !origin === the same site, "undefined" cross site {req.headers.origin}
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
       // The first argument (null) indicates that there is no error.
       // The second argument (true) indicates that the request is allowed.
       callback(null, true);

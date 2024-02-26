@@ -5,3 +5,8 @@
 12/02/2024	19:28:50	d7e6a4b7-a53a-49a8-8b28-1808647db6d8	GET	undefined	/mmm	TypeError: req.accepots is not a function
 12/02/2024	23:51:34	318cb09c-ae37-47de-a13c-de7fa69c831c	GET	undefined	/index	ReferenceError: path is not defined
 13/02/2024	17:47:08	d632a5b4-29b7-43a7-8517-55c4efbb02f0	GET	undefined	/	Error: ENOENT: no such file or directory, stat 'C:\Users\mehdi\Documents\NodejsExpress2024\routes\views\index.html'
+26/02/2024	02:03:41	4da9164b-a854-4af4-89a0-55fbc09a72f8	OPTIONS	https://www.google.com	/	Error: Not allowed by CORS
+26/02/2024	02:03:42	93b49591-5ef3-472f-b9a0-86ee9efc714c	GET	https://www.google.com	/	Error: Not allowed by CORS
+26/02/2024	02:04:40	de630c03-851f-4fba-95e2-40b997cf1920	OPTIONS	https://www.google.com	/	Error: Not allowed by CORS
+26/02/2024	02:04:40	959cd38b-46d5-4141-9264-f917ece1da22	GET	https://www.google.com	/	Error: Not allowed by CORS
+26/02/2024	13:38:45	f6c5398f-861d-42d0-839b-146fccdc743a	GET	undefined	/	Error: Not allowed by CORS
