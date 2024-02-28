@@ -24,9 +24,15 @@ const handleLogin = async (req, res) => {
 
   const match = await bcrypt.compare(pwd, foundUser.password);
   if (match) {
-    // Create JWT access and refresh TOKENS
+    const roles = Object.values(foundUser.roles); // return array of the value of roles // Ex Output: [2001, 1984]
+    // Create JWT access & refresh TOKENS
     const accessToken = jwt.sign(
-      { username: foundUser.username },
+      {
+        UserInfo: {
+          username: foundUser.username,
+          roles: roles
+        }
+      },
       process.env.ACCESS_TOKEN_SECRET,
       { expiresIn: "30s" } // 5-10min
     );

@@ -10,3 +10,8 @@
 26/02/2024	02:04:40	de630c03-851f-4fba-95e2-40b997cf1920	OPTIONS	https://www.google.com	/	Error: Not allowed by CORS
 26/02/2024	02:04:40	959cd38b-46d5-4141-9264-f917ece1da22	GET	https://www.google.com	/	Error: Not allowed by CORS
 26/02/2024	13:38:45	f6c5398f-861d-42d0-839b-146fccdc743a	GET	undefined	/	Error: Not allowed by CORS
+28/02/2024	18:59:32	d7744a14-18e0-4ee5-8954-a2bb974c578d	DELETE	undefined	/employees	TypeError: res.sendStatus is not a function
+28/02/2024	19:01:37	87ba26fb-0db7-40cd-b143-0237c494d149	DELETE	undefined	/employees	TypeError: Cannot read properties of undefined (reading 'authorization')
+28/02/2024	19:02:54	4a2141de-d833-4af7-a1b9-29a18b78d44c	DELETE	undefined	/employees	TypeError: Cannot read properties of undefined (reading 'Authorization')
+28/02/2024	19:23:03	138b3067-c06a-4a9a-8569-4b88b95e5c81	DELETE	undefined	/employees	TypeError: Cannot read properties of undefined (reading 'Authorization')
+28/02/2024	19:23:09	13436230-ebd1-4e79-8d38-f7332d0defe9	DELETE	undefined	/employees/	TypeError: Cannot read properties of undefined (reading 'Authorization')
