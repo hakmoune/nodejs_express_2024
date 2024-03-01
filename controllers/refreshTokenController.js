@@ -6,7 +6,6 @@ const usersDB = {
 };
 
 const jwt = require("jsonwebtoken");
-require("dotenv").config(); // Allows to Load environment variables from .env file.
 
 const handleRefreshToken = (req, res) => {
   const cookies = req.cookies;

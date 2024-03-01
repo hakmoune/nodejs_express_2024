@@ -1,3 +1,4 @@
+require("dotenv").config(); // Allows to Load environment variables from .env file.
 const express = require("express");
 const app = express(); // Create the server, express app
 const path = require("path");
@@ -5,9 +6,14 @@ const cors = require("cors");
 const corsOptions = require("./config/corsOptions");
 const { logger } = require("./middleware/logEvents");
 const credentials = require("./middleware/credentials");
-const PORT = process.env.PORT || 3100;
 const errorHandler = require("./middleware/errorHandler");
 const cookieParser = require("cookie-parser");
+const mongoose = require("mongoose");
+const connectDB = require("./config/dbConn");
+const PORT = process.env.PORT || 3100;
+
+// Connect To MongoDB
+connectDB();
 
 // Custom middleware logger
 app.use(logger);
@@ -60,7 +66,14 @@ app.all("*", (req, res) => {
 // Custom middleware to Handle Errors
 app.use(errorHandler);
 
-// Listening to the PORT
-app.listen(PORT, () => {
-  console.log(`Listening on port : ${PORT}`);
+// event listener in Mongoose, listens for the "open" event on the MongoDB connection
+// L'événement "open" est émis une fois la connexion Mongoose au serveur MongoDB établie avec succès.
+mongoose.connection.once("open", () => {
+  // Callback function to be executed when the connection is open
+
+  console.log("Connected to mongoDB");
+  // Listening to the PORT
+  app.listen(PORT, () => {
+    console.log(`Listening on port : ${PORT}`);
+  });
 });
