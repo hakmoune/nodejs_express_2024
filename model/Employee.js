@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 // Chaque schéma correspond à une collection MongoDB
 const employeeSchema = new Schema({
-  username: {
+  firstname: {
     type: String,
     required: true
   },

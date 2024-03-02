@@ -1,14 +1,6 @@
-const usersDB = {
-  users: require("../model/users.json"),
-  setUsers: function(data) {
-    this.users = data;
-  }
-};
+const User = require("../model/User");
 const bcrypt = require("bcrypt");
-
 const jwt = require("jsonwebtoken");
-const fsPromises = require("fs").promises;
-const path = require("path");
 
 const handleLogin = async (req, res) => {
   const { user, pwd } = req.body;
@@ -18,7 +10,7 @@ const handleLogin = async (req, res) => {
       message: "Username and password are required"
     });
 
-  const foundUser = usersDB.users.find(person => person.username === user);
+  const foundUser = await User.findOne({ username: user }).exec();
   if (!foundUser) return res.sendStatus(401); // Unauthorized
 
   const match = await bcrypt.compare(pwd, foundUser.password);
@@ -42,16 +34,11 @@ const handleLogin = async (req, res) => {
     );
 
     //Saving refreshToken with Current User
-    const otherUsers = usersDB.users.filter(
-      person => person.username !== foundUser.username
-    );
-    const currentUser = { ...foundUser, refreshToken };
-    usersDB.setUsers([...otherUsers, currentUser]);
-    await fsPromises.writeFile(
-      path.join(__dirname, "..", "model", "users.json"),
-      JSON.stringify(usersDB.users)
-    );
-    // Cookie is sent by the FRONT every time we make a request to the domaine that it's assiated with
+    foundUser.refreshToken = refreshToken;
+    const result = await foundUser.save();
+    console.log(result);
+
+    // Cookie is sent by the FRONT every time we make a request to the domaine that it's associated with
     // On the front you should use credentials: true, Otherwise you get a CROSS Error
     res.cookie("jwt", refreshToken, {
       httpOnly: true,
